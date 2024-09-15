@@ -1,0 +1,29 @@
+{
+    "please_wait": "Veuillez patienter...",
+    "changeLanguage": "Changer la langue ?",
+    "Login": {
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "login": "Se connecter",
+        "languageEnglish": "Anglais",
+        "languageFrench": "Français"
+    },
+    "Home": {
+        "title": "Evenements",
+        "notVehicleFound": "Aucun détail de véhicule trouvé !",
+        "notstudentFound": "Aucun evenement trouvé !",
+        "studentDetails": "Informations des élèves",
+        "vehicleDetails": "Informations des vehicules",
+        "trackLive": "Suivi en direct",
+        "studentName": "Nom de l'étudiant : ",
+        "studentID": "ID de l'étudiant : ",
+        "pickup": "Ramassage : ",
+        "drop": "Dépot : "
+    },
+    "EventDetailsScreen": {
+        "title": "Détail de l'évenement"
+    },
+    "Notification": {
+        "title": "Notifications Récentes"
+    }
+}

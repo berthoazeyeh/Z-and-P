@@ -55,6 +55,7 @@ react {
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
 def enableProguardInReleaseBuilds = false
+def enableSeparateBuildPerCPUArchitecture = true
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
@@ -81,8 +82,25 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
+    }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
     }
     signingConfigs {
+         release {
+            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+                storeFile file(MYAPP_UPLOAD_STORE_FILE)
+                storePassword MYAPP_UPLOAD_STORE_PASSWORD
+                keyAlias MYAPP_UPLOAD_KEY_ALIAS
+                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+            }
+        }
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -115,4 +133,17 @@ dependencies {
     }
 }
 
+
+project.ext.vectoricons = [
+    iconFontNames: [ 
+        'Ionicons.ttf',
+        'MaterialCommunityIcons.ttf',
+        'MaterialIcons.ttf',
+        'EvilIcons.ttf',
+        'Fontisto.ttf',
+        'Feather.ttf',
+        'SimpleLineIcons.ttf',
+        ] // Specify font files
+]
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle"); // <--add
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
